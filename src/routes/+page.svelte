@@ -1,5 +1,7 @@
-<h1>Hello, world!</h1>
-<p>There's a song that we're singing.</p>
-<p>Come on <a href="https://www.youtube.com/watch?v=qAcfVbSsKro">get happy</a>!</p>
+<script lang="ts">
+    import { mapboxglAccessToken } from "../config";
+    
+    import Map from "../lib/Map.svelte";
+</script>
 
-<!-- Totally stolen from https://sveltestrap.js.org/?path=/story/components--get-started -->
+<Map accessToken={mapboxglAccessToken}/>

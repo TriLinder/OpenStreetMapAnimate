@@ -1,6 +1,12 @@
 <script lang="ts">
-    import { Input } from "sveltestrap";
     import gpxParser from "gpxparser";
+
+    import type { User } from '../../types/user';
+    import { TrackPoint } from '../../types/track_point';
+
+    import { Input } from "sveltestrap";
+
+    export let user: User;
 
     function handleFileSelection(event: Event) {
         const file = (event.target as HTMLInputElement).files![0];
@@ -18,6 +24,12 @@
         gpx.parse(gpxString);
         
         const track = gpx.tracks[0];
+        
+        user.track.reset();
+
+        track.points.forEach(function(point) {
+            user.track.addTrackPoint(new TrackPoint(point.lon, point.lat, point.time.getTime()));
+        });
     }
 </script>
 

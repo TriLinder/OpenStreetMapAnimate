@@ -1,5 +1,7 @@
 <script lang="ts">
     import { _ } from 'svelte-i18n';
+    import { User } from '../../types/user';
+
     import { Button, Modal, ModalHeader, ModalFooter, ModalBody } from "sveltestrap";
 
     import IntroductionStep from './IntroductionStep.svelte';
@@ -10,9 +12,15 @@
     export let isOpen = false;
     
     let step = 0;
+    let user: User;
 
     function toggle() {
         isOpen =! isOpen;
+        reset();
+    }
+
+    function reset() {
+        user = new User();
     }
 
     function nextStep() {
@@ -20,8 +28,11 @@
 
         if (step == 4) {
             isOpen = false;
+            console.log(user.track.points)
         }
     }
+    
+    reset();
 </script>
 
 <Modal isOpen={isOpen}>
@@ -31,7 +42,7 @@
         {#if step == 0}
             <IntroductionStep/>
         {:else if step == 1}
-            <GpxUploadStep/>
+            <GpxUploadStep bind:user={user}/>
         {:else if step == 2}
             <ChangesetsStep/>
         {:else if step == 3}

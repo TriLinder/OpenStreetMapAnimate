@@ -6,6 +6,14 @@
         
         "usernameInput": {
             "osmUsername": "OSM Username"
+        },
+
+        "changesetLoading": {
+            "loading": "Loading",
+            "failure": "Loading failed.",
+            "makeSureAdblockIsOff": "Make sure your adblocker is off.",
+            "success": "Success!",
+            "continueToFinish": "Press Continue to finish."
         }
     }
 }

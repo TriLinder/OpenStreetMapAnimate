@@ -1,5 +1,5 @@
 import { TimestampGeoPoint } from "./timestamp_geo_point";
 
-export class TrackPoint extends TimestampGeoPoint {
-    
+export class Changeset extends TimestampGeoPoint {
+
 }

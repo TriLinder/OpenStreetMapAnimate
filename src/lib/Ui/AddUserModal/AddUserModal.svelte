@@ -17,9 +17,8 @@
 
     let user: User;
 
-    function toggle() {
+    export function toggle() {
         isOpen =! isOpen;
-        reset();
     }
 
     function reset() {

@@ -1,4 +1,5 @@
 <script lang="ts">
+    // i18n
     import { addMessages, init } from 'svelte-i18n';
 
     import enUS from "../lang/en-US.json";

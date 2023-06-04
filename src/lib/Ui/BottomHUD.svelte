@@ -1,10 +1,12 @@
 <script lang="ts">
     import PlaybackControl from "./PlaybackControl.svelte";
+    import AddUserButton from "./AddUserButton.svelte";
 </script>
 
 <style>
     div {
-        z-index: 2;
+        display: flex;
+        z-index: 1;
 
         position: absolute;
         top: 90%;
@@ -29,4 +31,5 @@
 
 <div>
     <PlaybackControl startTime={1685873858 * 1000} endTime={(1685873858 + 1*60*60) * 1000}/>
+    <AddUserButton/>
 </div>

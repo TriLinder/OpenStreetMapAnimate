@@ -84,6 +84,7 @@
 
     #currentTimeText {
         padding-left: 1em;
+        margin-right: 3.5em;
         width: 2vw;
     }
 </style>

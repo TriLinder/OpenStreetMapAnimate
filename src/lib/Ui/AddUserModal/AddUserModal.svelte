@@ -1,6 +1,7 @@
 <script lang="ts">
     import { _ } from 'svelte-i18n';
     import { User } from '../../types/user';
+    import { users } from '../../../stores';
 
     import { Button, Modal, ModalHeader, ModalFooter, ModalBody } from "sveltestrap";
 
@@ -31,7 +32,9 @@
 
         if (step == 4) {
             isOpen = false;
-            console.log(user)
+            
+            // Add the user to the store array
+            users.update(array => [...array, user]);
         }
     }
     

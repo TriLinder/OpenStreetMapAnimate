@@ -7,7 +7,7 @@
     import IntroductionStep from './IntroductionStep.svelte';
     import GpxUploadStep from './GpxUploadStep.svelte';
     import UsernameInputStep from './UsernameInputStep.svelte';
-    import FinalStep from './FinalStep.svelte';
+    import ChangesetsLoadStep from './ChangesetsLoadStep.svelte';
 
     export let isOpen = false;
     
@@ -49,7 +49,7 @@
         {:else if step == 2}
             <UsernameInputStep bind:canContinue={canContinue} bind:user={user}/>
         {:else if step == 3}
-            <FinalStep/>
+            <ChangesetsLoadStep bind:canContinue={canContinue} bind:user={user}/>
         {/if}
     </ModalBody>
 

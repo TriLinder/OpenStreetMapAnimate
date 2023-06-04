@@ -1,1 +1,0 @@
-<p>Press continue to finish.</p>

@@ -1,0 +1,7 @@
+{
+    "addUserModal": {
+        "title": "Add user",
+        "cancelButton": "Cancel",
+        "continueButton": "Continue"
+    }
+}

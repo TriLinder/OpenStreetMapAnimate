@@ -1,4 +1,6 @@
 <script lang="ts">
+    import { onMount } from 'svelte';
+
     import { Icon, Input } from "sveltestrap";
     import Counter from "./Counter.svelte";
 
@@ -10,15 +12,32 @@
     let playing = false;
     let playbackSpeed = 10;
 
+    let previousUpdateTimestamp: number;
+
     function timestampToLocaleTimeString(timestamp: number) {
         const date = new Date(timestamp);
 
         return date.toLocaleTimeString("cs-CZ");
     }
 
-    function togglePlayBackPlay() {
+    function togglePlayback() {
         playing = !playing;
     }
+
+    function updatePlayback(timestamp: any) {
+        const elapsed = timestamp - previousUpdateTimestamp;
+
+        if (playing) {
+            currentTime += elapsed * playbackSpeed;
+        }
+
+        previousUpdateTimestamp = timestamp;
+        requestAnimationFrame(updatePlayback);
+    }
+
+    onMount(function() {
+        requestAnimationFrame(updatePlayback);
+    });
 </script>
 
 <style>
@@ -49,7 +68,7 @@
 <div class="controls">
     <Counter bind:value={playbackSpeed} baseValue={10}/>
 
-    <button id="togglePlaybackButton" on:click={togglePlayBackPlay}>
+    <button id="togglePlaybackButton" on:click={togglePlayback}>
         {#if playing}
             <Icon name="pause-fill"/>
         {:else}

@@ -2,10 +2,25 @@
     import { _ } from 'svelte-i18n';
     import { Button, Modal, ModalHeader, ModalFooter, ModalBody } from "sveltestrap";
 
+    import IntroductionStep from './IntroductionStep.svelte';
+    import GpxUploadStep from './GpxUploadStep.svelte';
+    import ChangesetsStep from './ChangesetsStep.svelte';
+    import FinalStep from './FinalStep.svelte';
+
     export let isOpen = false;
+    
+    let step = 0;
 
     function toggle() {
         isOpen =! isOpen;
+    }
+
+    function nextStep() {
+        step += 1;
+
+        if (step == 4) {
+            isOpen = false;
+        }
     }
 </script>
 
@@ -13,11 +28,19 @@
     <ModalHeader {toggle}> {$_("addUserModal.title")} </ModalHeader>
 
     <ModalBody>
-        <p>Step 1</p>
+        {#if step == 0}
+            <IntroductionStep/>
+        {:else if step == 1}
+            <GpxUploadStep/>
+        {:else if step == 2}
+            <ChangesetsStep/>
+        {:else if step == 3}
+            <FinalStep/>
+        {/if}
     </ModalBody>
 
     <ModalFooter>
         <Button color="danger" on:click={toggle}>{$_("addUserModal.cancelButton")}</Button>
-        <Button color="primary">{$_("addUserModal.continueButton")}</Button>
+        <Button color="primary" on:click={nextStep}>{$_("addUserModal.continueButton")}</Button>
     </ModalFooter>
 </Modal>

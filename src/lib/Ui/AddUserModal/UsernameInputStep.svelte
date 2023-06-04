@@ -1,4 +1,5 @@
 <script lang="ts">
+    import { _ } from 'svelte-i18n';
     import type { User } from "../../types/user";
     
     import { Input } from "sveltestrap";
@@ -9,4 +10,4 @@
     $: canContinue = user.osmProfile.username.length >= 1;
 </script>
 
-<Input type="text" placeholder="OSM Username" bind:value={user.osmProfile.username}/>
+<Input type="text" placeholder={$_("addUserModal.usernameInput.osmUsername")} bind:value={user.osmProfile.username}/>

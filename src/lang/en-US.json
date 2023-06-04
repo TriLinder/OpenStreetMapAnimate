@@ -2,6 +2,10 @@
     "addUserModal": {
         "title": "Add user",
         "cancelButton": "Cancel",
-        "continueButton": "Continue"
+        "continueButton": "Continue",
+        
+        "usernameInput": {
+            "osmUsername": "OSM Username"
+        }
     }
 }

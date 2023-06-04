@@ -22,6 +22,11 @@
 
     function togglePlayback() {
         playing = !playing;
+
+        // Restart the playback if it ended
+        if (playing && currentTime >= endTime) {
+            currentTime = 0;
+        }
     }
 
     function handleKeyDown(event: KeyboardEvent) {
@@ -35,6 +40,18 @@
 
         if (playing) {
             currentTime += elapsed * playbackSpeed;
+        }
+
+        // Pause the playback on end
+        if (currentTime >= endTime) {
+            currentTime = endTime;
+            playing = false;
+        }
+
+        // Make sure we can't end up before the startTime (this could happen with a negative speed value)
+        if (currentTime <= startTime) {
+            currentTime = startTime;
+            playing = false;
         }
 
         previousUpdateTimestamp = timestamp;

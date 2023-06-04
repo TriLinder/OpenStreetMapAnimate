@@ -6,12 +6,14 @@
 
     import IntroductionStep from './IntroductionStep.svelte';
     import GpxUploadStep from './GpxUploadStep.svelte';
-    import ChangesetsStep from './ChangesetsStep.svelte';
+    import UsernameInputStep from './UsernameInputStep.svelte';
     import FinalStep from './FinalStep.svelte';
 
     export let isOpen = false;
     
     let step = 0;
+    let canContinue = true;
+
     let user: User;
 
     function toggle() {
@@ -21,6 +23,7 @@
 
     function reset() {
         user = new User();
+        canContinue = true;
     }
 
     function nextStep() {
@@ -28,7 +31,7 @@
 
         if (step == 4) {
             isOpen = false;
-            console.log(user.track.points)
+            console.log(user)
         }
     }
     
@@ -42,9 +45,9 @@
         {#if step == 0}
             <IntroductionStep/>
         {:else if step == 1}
-            <GpxUploadStep bind:user={user}/>
+            <GpxUploadStep bind:canContinue={canContinue} bind:user={user}/>
         {:else if step == 2}
-            <ChangesetsStep/>
+            <UsernameInputStep bind:canContinue={canContinue} bind:user={user}/>
         {:else if step == 3}
             <FinalStep/>
         {/if}
@@ -52,6 +55,6 @@
 
     <ModalFooter>
         <Button color="danger" on:click={toggle}>{$_("addUserModal.cancelButton")}</Button>
-        <Button color="primary" on:click={nextStep}>{$_("addUserModal.continueButton")}</Button>
+        <Button color="primary" on:click={nextStep} disabled={!canContinue}>{$_("addUserModal.continueButton")}</Button>
     </ModalFooter>
 </Modal>

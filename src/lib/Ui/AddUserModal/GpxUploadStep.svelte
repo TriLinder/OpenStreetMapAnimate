@@ -1,4 +1,5 @@
 <script lang="ts">
+    import { onMount } from "svelte";
     import gpxParser from "gpxparser";
 
     import type { User } from '../../types/user';
@@ -6,6 +7,7 @@
 
     import { Input } from "sveltestrap";
 
+    export let canContinue: boolean;
     export let user: User;
 
     function handleFileSelection(event: Event) {
@@ -30,7 +32,13 @@
         track.points.forEach(function(point) {
             user.track.addTrackPoint(new TrackPoint(point.lon, point.lat, point.time.getTime()));
         });
+
+        canContinue = true;
     }
+
+    onMount(function() {
+        canContinue = false;
+    });
 </script>
 
 <Input type="file" on:change={handleFileSelection}/>

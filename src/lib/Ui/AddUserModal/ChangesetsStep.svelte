@@ -1,1 +1,0 @@
-<p>OpenStreetMap is cool!</p>

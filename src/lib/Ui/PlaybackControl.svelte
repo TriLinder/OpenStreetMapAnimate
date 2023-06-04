@@ -24,6 +24,12 @@
         playing = !playing;
     }
 
+    function handleKeyDown(event: KeyboardEvent) {
+        if(event.key == " ") {
+            togglePlayback();
+        }
+    }
+
     function updatePlayback(timestamp: any) {
         const elapsed = timestamp - previousUpdateTimestamp;
 
@@ -64,6 +70,8 @@
         width: 2vw;
     }
 </style>
+
+<svelte:window on:keydown={handleKeyDown} />
 
 <div class="controls">
     <Counter bind:value={playbackSpeed} baseValue={10}/>

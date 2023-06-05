@@ -46,17 +46,18 @@
 
         const changesetsData = data["changesets"];
 
-        changesetsData.forEach(function(changesetData) {
-            const lon = changesetData["min_lon"];
-            const lat = changesetData["min_lat"];
+        for (const changesetData of changesetsData) {
             const id = changesetData["id"];
             const timestamp = new Date(changesetData["created_at"]).getTime();
 
             if (timestamp >= user.track.startTime && timestamp <= user.track.endTime) {
-                const changeset = new Changeset(lon, lat, id, timestamp);
-                user.changesets.addChangeset(changeset);
+                const changeset = new Changeset(id);
+
+                await changeset.loadChanges();
+
+                user.changesetCollection.addChangeset(changeset);
             }
-        });
+        };
     }
 
     onMount(async function() {

@@ -34,6 +34,7 @@ export class UserRenderer {
                         }
                     });
 
+                    /*
                     user.changesets.changesets.forEach(function(changeset) {
                         const changesetSourceId = `changesetSource-${changeset.id}`;
                         const changesetLayerId = `changesetLayer-${changeset.id}`;
@@ -55,8 +56,8 @@ export class UserRenderer {
                             "layout": {
                                 "visibility": "visible"
                             }
-                        });
-                    });
+                        }); 
+                    }); */
 
                     user.addedToMap = true;
                 }
@@ -67,6 +68,7 @@ export class UserRenderer {
 
                 (map.getSource(userSourceId) as GeoJSONSource).setData(geojson);
 
+                /*
                 // Update changesets' layer visibility
                 user.changesets.changesets.forEach(function(changeset) {
                     const changesetLayerId = `changesetLayer-${changeset.id}`;
@@ -75,6 +77,7 @@ export class UserRenderer {
 
                     map.setLayoutProperty(changesetLayerId, "visibility", visible ? "visible" : "none");
                 });
+                */
             });
         }
 

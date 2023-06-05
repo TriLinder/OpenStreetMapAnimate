@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-    import { map } from '../stores';
+    import { map } from '../../stores';
 	import mapboxgl from 'mapbox-gl';
 
     export let accessToken: string;

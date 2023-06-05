@@ -40,19 +40,27 @@
     reset();
 </script>
 
+<style>
+    #content {
+        text-align: center;
+    }
+</style>
+
 <Modal isOpen={isOpen}>
     <ModalHeader {toggle}> {$_("addUserModal.title")} </ModalHeader>
 
     <ModalBody>
-        {#if step == 0}
-            <IntroductionStep/>
-        {:else if step == 1}
-            <GpxUploadStep bind:canContinue={canContinue} bind:user={user}/>
-        {:else if step == 2}
-            <UsernameInputStep bind:canContinue={canContinue} bind:user={user}/>
-        {:else if step == 3}
-            <ChangesetsLoadStep bind:canContinue={canContinue} bind:user={user}/>
-        {/if}
+        <div id="content">
+            {#if step == 0}
+                <IntroductionStep/>
+            {:else if step == 1}
+                <GpxUploadStep bind:canContinue={canContinue} bind:user={user}/>
+            {:else if step == 2}
+                <UsernameInputStep bind:canContinue={canContinue} bind:user={user}/>
+            {:else if step == 3}
+                <ChangesetsLoadStep bind:canContinue={canContinue} bind:user={user}/>
+            {/if}
+        </div>
     </ModalBody>
 
     <ModalFooter>

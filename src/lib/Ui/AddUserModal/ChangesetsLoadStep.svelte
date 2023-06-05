@@ -71,23 +71,15 @@
     });
 </script>
 
-<style>
-    .content {
-        text-align: center;
-    }
-</style>
+{#if stage == "loading"}
+    <h2>{$_("addUserModal.changesetLoading.loading")}</h2>
+    <Spinner/>
 
-<div class="content">
-    {#if stage == "loading"}
-        <h2>{$_("addUserModal.changesetLoading.loading")}</h2>
-        <Spinner/>
+{:else if stage == "error"}
+    <h2>{$_("addUserModal.changesetLoading.failure")}</h2>
+    <p>{$_("addUserModal.changesetLoading.makeSureAdblockIsOff")}</p>
 
-    {:else if stage == "error"}
-        <h2>{$_("addUserModal.changesetLoading.failure")}</h2>
-        <p>{$_("addUserModal.changesetLoading.makeSureAdblockIsOff")}</p>
-
-    {:else if stage == "success"}
-        <h2>{$_("addUserModal.changesetLoading.success")}</h2>
-        <p>{$_("addUserModal.changesetLoading.continueToFinish")}</p>
-    {/if}
-</div>
+{:else if stage == "success"}
+    <h2>{$_("addUserModal.changesetLoading.success")}</h2>
+    <p>{$_("addUserModal.changesetLoading.continueToFinish")}</p>
+{/if}

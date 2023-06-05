@@ -5,8 +5,8 @@ import { mainMap, users, playbackCurrentTime } from '../../stores';
 import type { GeoJSONSource } from 'mapbox-gl';
 
 export class UserRenderer {
-    constructor() {
-        requestAnimationFrame(this.update.bind(this));    
+    public startLoop() {
+        requestAnimationFrame(this.update.bind(this));
     }
 
     private update() {

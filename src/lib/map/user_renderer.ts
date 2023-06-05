@@ -50,7 +50,7 @@ export class UserRenderer {
                             "type": "circle",
                             "paint": {
                                 "circle-radius": 10,
-                                "circle-color": "#007cbf"
+                                "circle-color": "#61f46b"
                             },
                             "layout": {
                                 "visibility": "visible"
@@ -66,6 +66,15 @@ export class UserRenderer {
                 const geojson = trackPoint.toGeoJson();
 
                 (map.getSource(userSourceId) as GeoJSONSource).setData(geojson);
+
+                // Update changesets' layer visibility
+                user.changesets.changesets.forEach(function(changeset) {
+                    const changesetLayerId = `changesetLayer-${changeset.id}`;
+ 
+                    const visible = get(playbackCurrentTime) >= changeset.timestamp;
+
+                    map.setLayoutProperty(changesetLayerId, "visibility", visible ? "visible" : "none");
+                });
             });
         }
 

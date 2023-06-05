@@ -7,9 +7,13 @@ export class User {
     public track: Track;
     public changesets: ChangesetCollection;
 
+    public addedToMap: boolean;
+
     constructor() {
         this.osmProfile = new OsmProfile();
         this.track = new Track();
         this.changesets = new ChangesetCollection();
+
+        this.addedToMap = false;
     }
 }

@@ -4,6 +4,11 @@
         "cancelButton": "Cancel",
         "continueButton": "Continue",
 
+        "introduction": {
+            "title": "Add user",
+            "requirements": "You will need the user's GPX file and their OpenStreetMap username for this step."
+        },
+
         "gpxUpload": {
             "uploadGpxFile": "Select a GPX file"
         },

@@ -1,2 +1,6 @@
-<h2>Add a user</h2>
-<p>You will need a GPX file and the user's OpenStreetMap username for this step.</p>
+<script lang="ts">
+    import { _ } from 'svelte-i18n';
+</script>
+
+<h2>{$_("addUserModal.introduction.title")}</h2>
+<p>{$_("addUserModal.introduction.requirements")}</p>

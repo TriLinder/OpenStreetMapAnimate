@@ -15,6 +15,6 @@
 
 <ManageUsersOffcanvas bind:isOpen={isOpen}/>
 
-<Button color="danger" size={size} on:click={toggle}>
-    <Icon name="person-dash-fill"/>
+<Button color="secondary" size={size} on:click={toggle}>
+    <Icon name="person-check-fill"/>
 </Button>

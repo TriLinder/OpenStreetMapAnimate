@@ -18,7 +18,7 @@ export class UserRenderer {
                 const userLayerId = `userLayer-${user.osmProfile.username}`;
                 
                 // Add the user's source and layer to the map
-                // Then add all their changesets
+                // Then add all their changes
                 if (!user.addedToMap) {
                     map.addSource(userSourceId, {
                         "type": "geojson"
@@ -34,30 +34,33 @@ export class UserRenderer {
                         }
                     });
 
-                    /*
-                    user.changesets.changesets.forEach(function(changeset) {
-                        const changesetSourceId = `changesetSource-${changeset.id}`;
-                        const changesetLayerId = `changesetLayer-${changeset.id}`;
+                    
+                    user.changesetCollection.changesets.forEach(function(changeset) {
+                        changeset.changes.forEach(function(change) {
+                            const changeSourceId = `changeSource-${change.id}`;
+                            const changeLayerId = `changeLayer-${change.id}`;
 
-                        map.addSource(changesetSourceId, {
-                            "type": "geojson",
-                            "data": changeset.toGeoJson()
+                            console.log(changeSourceId);
+                            map.addSource(changeSourceId, {
+                                "type": "geojson",
+                                "data": change.toGeoJson()
+                            });
+
+
+                            map.addLayer({
+                                "id": changeLayerId,
+                                "source": changeSourceId,
+                                "type": "circle",
+                                "paint": {
+                                    "circle-radius": 10,
+                                    "circle-color": "#61f46b"
+                                },
+                                "layout": {
+                                    "visibility": "visible"
+                                }
+                            }); 
                         });
-
-                        
-                        map.addLayer({
-                            "id": changesetLayerId,
-                            "source": changesetSourceId,
-                            "type": "circle",
-                            "paint": {
-                                "circle-radius": 10,
-                                "circle-color": "#61f46b"
-                            },
-                            "layout": {
-                                "visibility": "visible"
-                            }
-                        }); 
-                    }); */
+                    });
 
                     user.addedToMap = true;
                 }
@@ -68,16 +71,16 @@ export class UserRenderer {
 
                 (map.getSource(userSourceId) as GeoJSONSource).setData(geojson);
 
-                /*
-                // Update changesets' layer visibility
-                user.changesets.changesets.forEach(function(changeset) {
-                    const changesetLayerId = `changesetLayer-${changeset.id}`;
- 
-                    const visible = get(playbackCurrentTime) >= changeset.timestamp;
+                // Update changes' layer visibility
+                user.changesetCollection.changesets.forEach(function(changeset) {
+                    changeset.changes.forEach(function(change) {
+                        const changeLayerId = `changeLayer-${change.id}`;
+    
+                        const visible = get(playbackCurrentTime) >= change.timestamp;
 
-                    map.setLayoutProperty(changesetLayerId, "visibility", visible ? "visible" : "none");
+                        map.setLayoutProperty(changeLayerId, "visibility", visible ? "visible" : "none");
+                    });
                 });
-                */
             });
         }
 

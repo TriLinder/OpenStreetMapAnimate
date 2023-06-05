@@ -19,5 +19,13 @@
             "success": "Success!",
             "continueToFinish": "Press Continue to finish."
         }
+    },
+
+    "manageUsersOffcanvas": {
+        "title": "Manage users",
+        "noUsers": "No users",
+        "user": {
+            "changes": "Changes"
+        }
     }
 }

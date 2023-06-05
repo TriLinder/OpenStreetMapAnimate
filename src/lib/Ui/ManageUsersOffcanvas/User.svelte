@@ -1,9 +1,8 @@
 <script lang="ts">
+    import { _ } from 'svelte-i18n';
     import type { User } from "../../types/user";
-    import { get } from 'svelte/store'
-    import { users } from "../../../stores";
 
-    import { Icon, Button } from "sveltestrap";
+    import { Icon } from "sveltestrap";
     
     export let user: User;
 </script>
@@ -28,5 +27,5 @@
 
 <div id="content">
     <span id="username"> <Icon name="circle-fill" style="color: {user.osmProfile.color};"/> {user.osmProfile.username}</span>
-    <p>Changes: {user.changesetCollection.getTotalChangeCount()}</p>
+    <p>{$_("manageUsersOffcanvas.user.changes")}: {user.changesetCollection.getTotalChangeCount()}</p>
 </div>

@@ -1,5 +1,5 @@
 <script lang="ts">
-    import { get } from 'svelte/store'
+    import { _ } from 'svelte-i18n';
     import { users } from '../../../stores';
 
     import { Offcanvas } from "sveltestrap";
@@ -12,10 +12,10 @@
     }
 </script>
 
-<Offcanvas isOpen={isOpen} {toggle} header="Manage users" placement="start">
+<Offcanvas isOpen={isOpen} {toggle} header={$_("manageUsersOffcanvas.title")} placement="start">
     {#each $users as user (user.osmProfile.username)}
         <User user={user}/>
     {:else}
-        <h2>No users.</h2>
+        <h2>{$_("manageUsersOffcanvas.noUsers")}</h2>
     {/each}
 </Offcanvas>

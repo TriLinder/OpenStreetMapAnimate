@@ -1,6 +1,9 @@
 <script lang="ts">
+    import { ButtonGroup } from "sveltestrap";
+
     import UserTracksPlaybackControl from "./UserTracksPlaybackControl.svelte";
     import AddUserButton from "./AddUserButton.svelte";
+    import ManageUsersButton from "./ManageUsersButton.svelte";
 </script>
 
 <style>
@@ -31,5 +34,9 @@
 
 <div>
     <UserTracksPlaybackControl/>
-    <AddUserButton/>
+
+    <ButtonGroup>
+        <AddUserButton/>
+        <ManageUsersButton/>
+    </ButtonGroup>
 </div>

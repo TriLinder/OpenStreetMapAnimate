@@ -37,7 +37,7 @@ export class UserRenderer {
                 }
 
                 // Update user's source location
-                const trackPoint = user.track.getPointClosestToTimestamp(get(playbackCurrentTime)); 
+                const trackPoint = user.track.getInterpolatedPointFromTimestamp(get(playbackCurrentTime)); 
                 const geojson = trackPoint.toGeoJson();
 
                 (map.getSource(sourceId) as GeoJSONSource).setData(geojson);

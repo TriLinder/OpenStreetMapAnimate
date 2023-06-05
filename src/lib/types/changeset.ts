@@ -30,7 +30,7 @@ export class Changeset {
             const timestamp = new Date(String(node.getAttribute("timestamp"))).getTime();
 
             // Add the change
-            const change = new Change(id, lon, lat, timestamp);
+            const change = new Change(`${this.id}-node-${id}-${Math.random()*10**16}`, lon, lat, timestamp);
             this.changes.push(change);
         }
 
@@ -54,7 +54,7 @@ export class Changeset {
             let lat: number = data["elements"][0]["lat"];
 
             // Finally add the change
-            const change = new Change(id, lon, lat, timestamp);
+            const change = new Change(`${this.id}-way-${id}-${Math.random()*10**16}`, lon, lat, timestamp);
             this.changes.push(change);
         }
     }

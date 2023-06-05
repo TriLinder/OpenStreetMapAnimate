@@ -3,6 +3,10 @@
         "title": "Add user",
         "cancelButton": "Cancel",
         "continueButton": "Continue",
+
+        "gpxUpload": {
+            "uploadGpxFile": "Select a GPX file"
+        },
         
         "usernameInput": {
             "osmUsername": "OSM Username"

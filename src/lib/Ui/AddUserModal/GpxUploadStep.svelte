@@ -1,4 +1,5 @@
 <script lang="ts">
+    import { _ } from 'svelte-i18n';
     import { onMount } from "svelte";
     import gpxParser from "gpxparser";
 
@@ -41,4 +42,5 @@
     });
 </script>
 
+<h3>{$_("addUserModal.gpxUpload.uploadGpxFile")}</h3>
 <Input type="file" on:change={handleFileSelection}/>

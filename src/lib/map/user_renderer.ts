@@ -29,8 +29,8 @@ export class UserRenderer {
                         "source": userSourceId,
                         "type": "circle",
                         "paint": {
-                            "circle-radius": 10,
-                            "circle-color": "#007cbf"
+                            "circle-radius": 15,
+                            "circle-color": user.osmProfile.color
                         }
                     });
 
@@ -52,8 +52,8 @@ export class UserRenderer {
                                 "source": changeSourceId,
                                 "type": "circle",
                                 "paint": {
-                                    "circle-radius": 10,
-                                    "circle-color": "#61f46b"
+                                    "circle-radius": 7,
+                                    "circle-color": user.osmProfile.color
                                 },
                                 "layout": {
                                     "visibility": "visible"

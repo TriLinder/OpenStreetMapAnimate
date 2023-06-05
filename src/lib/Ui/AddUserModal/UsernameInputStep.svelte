@@ -25,4 +25,4 @@
     <Icon name="person" style="color: {user.osmProfile.color};"/>
 </div>
 
-<Input type="text" placeholder={$_("addUserModal.usernameInput.osmUsername")} bind:value={user.osmProfile.username} on:input={updateUserColor}/>
+<Input type="text" placeholder={$_("addUserModal.usernameInput.osmUsername")} bind:value={user.osmProfile.username} on:change={updateUserColor} on:input={updateUserColor}/>

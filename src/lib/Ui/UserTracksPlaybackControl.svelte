@@ -7,8 +7,8 @@
     let endTime = 0;
 
     users.subscribe(function(users) {
-        let startTime = Infinity;
-        let endTime = -Infinity;
+        startTime = Infinity;
+        endTime = -Infinity;
 
         users.forEach(function(user) {
             startTime = Math.min(startTime, user.track.startTime);

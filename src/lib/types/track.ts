@@ -22,4 +22,20 @@ export class Track {
         this.startTime = Math.min(this.startTime, trackPoint.timestamp);
         this.endTime = Math.max(this.endTime, trackPoint.timestamp);
     }
+
+    public getPointClosestToTimestamp(timestamp: number) {
+        let closestPointTimeDifference = Infinity;
+        let closestPoint = this.points[0];
+
+        this.points.forEach(function (point) {
+            const timeDifference = Math.abs(timestamp - point.timestamp);
+
+            if (timeDifference <= closestPointTimeDifference) {
+                closestPointTimeDifference = timeDifference;
+                closestPoint = point;
+            }
+        });
+
+        return closestPoint;
+    }
 }

@@ -1,6 +1,6 @@
 
 import { get } from 'svelte/store'
-import { mainMap, users } from '../../stores';
+import { mainMap, users, playbackCurrentTime } from '../../stores';
 
 import type { GeoJSONSource } from 'mapbox-gl';
 
@@ -37,7 +37,8 @@ export class UserRenderer {
                 }
 
                 // Update user's source location
-                const geojson = user.track.points[0].toGeoJson();
+                const trackPoint = user.track.getPointClosestToTimestamp(get(playbackCurrentTime)); 
+                const geojson = trackPoint.toGeoJson();
 
                 (map.getSource(sourceId) as GeoJSONSource).setData(geojson);
             });

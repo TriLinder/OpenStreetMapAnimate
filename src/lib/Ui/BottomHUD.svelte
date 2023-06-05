@@ -1,5 +1,5 @@
 <script lang="ts">
-    import PlaybackControl from "./PlaybackControl.svelte";
+    import UserTracksPlaybackControl from "./UserTracksPlaybackControl.svelte";
     import AddUserButton from "./AddUserButton.svelte";
 </script>
 
@@ -30,6 +30,6 @@
 </style>
 
 <div>
-    <PlaybackControl startTime={1685873858 * 1000} endTime={(1685873858 + 1*60*60) * 1000}/>
+    <UserTracksPlaybackControl/>
     <AddUserButton/>
 </div>

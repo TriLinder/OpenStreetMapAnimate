@@ -16,4 +16,14 @@ export class ChangesetCollection {
     public addChangeset(changeset: Changeset) {
         this.changesets.push(changeset);
     }
+
+    public getTotalChangeCount() {
+        let count = 0;
+
+        this.changesets.forEach(function(changeset) {
+            count += changeset.changes.length;
+        });
+
+        return count;
+    }
 }

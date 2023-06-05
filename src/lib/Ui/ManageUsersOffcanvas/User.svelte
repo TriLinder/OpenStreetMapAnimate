@@ -1,11 +1,32 @@
 <script lang="ts">
     import type { User } from "../../types/user";
+    import { get } from 'svelte/store'
+    import { users } from "../../../stores";
 
-    import { Icon } from "sveltestrap";
+    import { Icon, Button } from "sveltestrap";
     
     export let user: User;
 </script>
 
-<div class="content">
-    <h3><Icon name="circle-fill" style="color: {user.osmProfile.color};"/> {user.osmProfile.username}</h3>
+<style>
+    #content {
+        padding: 1em;
+        margin-top: 1em;
+        margin-bottom: 1em;
+
+        border-width: 0.2rem;
+        border-radius: 1rem;
+        border-color: black;
+        border-style: solid;
+    }
+
+    #username {
+        font-size: 2em;
+        font-weight: bold;
+    }
+</style>
+
+<div id="content">
+    <span id="username"> <Icon name="circle-fill" style="color: {user.osmProfile.color};"/> {user.osmProfile.username}</span>
+    <p>Changes: {user.changesetCollection.getTotalChangeCount()}</p>
 </div>

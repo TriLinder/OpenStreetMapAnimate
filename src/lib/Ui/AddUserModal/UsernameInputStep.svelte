@@ -8,7 +8,7 @@
     export let user: User;
 
     $: user.osmProfile.setColorFromUsername();
-    $: canContinue = user.osmProfile.username.length >= 1;
+    $: canContinue = (user.osmProfile.username.length >= 1) && (/^[a-zA-Z_][a-zA-Z0-9_]{1,254}$/.test(user.osmProfile.username));
 </script>
 
 <Icon name="person" style="color: {user.osmProfile.color}; font-size: 5em;"/>

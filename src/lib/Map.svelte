@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
+    import { map } from '../stores';
 	import mapboxgl from 'mapbox-gl';
 
     export let accessToken: string;
@@ -7,17 +8,15 @@
     export let center: mapboxgl.LngLatLike = [0, 0];
     export let zoom = 0;
 
-    export let map: mapboxgl.Map | undefined = undefined;
-
 	onMount(function() {
 		mapboxgl.accessToken = accessToken;
 
-		map = new mapboxgl.Map({
+		map.set(new mapboxgl.Map({
 			container: "map",
 			style: style,
 			center: center,
 			zoom: zoom
-		});
+		}));
 	});
 </script>
 

@@ -14,23 +14,48 @@ export class UserRenderer {
 
         if (map) {
             get(users).forEach(function(user) {
-                const sourceId = `userSource-${user.osmProfile.username}`;
-                const layerId = `userLayer-${user.osmProfile.username}`;
+                const userSourceId = `userSource-${user.osmProfile.username}`;
+                const userLayerId = `userLayer-${user.osmProfile.username}`;
                 
                 // Add the user's source and layer to the map
+                // Then add all their changesets
                 if (!user.addedToMap) {
-                    map.addSource(sourceId, {
+                    map.addSource(userSourceId, {
                         "type": "geojson"
                     });
 
                     map.addLayer({
-                        "id": layerId,
-                        "source": sourceId,
+                        "id": userLayerId,
+                        "source": userSourceId,
                         "type": "circle",
                         "paint": {
                             "circle-radius": 10,
                             "circle-color": "#007cbf"
                         }
+                    });
+
+                    user.changesets.changesets.forEach(function(changeset) {
+                        const changesetSourceId = `changesetSource-${changeset.id}`;
+                        const changesetLayerId = `changesetLayer-${changeset.id}`;
+
+                        map.addSource(changesetSourceId, {
+                            "type": "geojson",
+                            "data": changeset.toGeoJson()
+                        });
+
+                        
+                        map.addLayer({
+                            "id": changesetLayerId,
+                            "source": changesetSourceId,
+                            "type": "circle",
+                            "paint": {
+                                "circle-radius": 10,
+                                "circle-color": "#007cbf"
+                            },
+                            "layout": {
+                                "visibility": "visible"
+                            }
+                        });
                     });
 
                     user.addedToMap = true;
@@ -40,7 +65,7 @@ export class UserRenderer {
                 const trackPoint = user.track.getInterpolatedPointFromTimestamp(get(playbackCurrentTime)); 
                 const geojson = trackPoint.toGeoJson();
 
-                (map.getSource(sourceId) as GeoJSONSource).setData(geojson);
+                (map.getSource(userSourceId) as GeoJSONSource).setData(geojson);
             });
         }
 

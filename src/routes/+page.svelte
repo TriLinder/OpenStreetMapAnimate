@@ -9,5 +9,9 @@
     }
 </script>
 
+<svelte:head>
+    <title>OpenStreetMap Animate</title>
+</svelte:head>
+
 <Ui/>
 <Map accessToken={mapboxglAccessToken}/>
